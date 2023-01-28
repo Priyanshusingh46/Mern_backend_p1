@@ -1,21 +1,23 @@
 const mongoose = require("mongoose");
+const validator = require('validator');
 const LoginSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        require:true,
-        minlenght:[6,"min 6 length required"],
-        maxlenght:18,
-        lowercase:true,
-    },
     email:{
         type:String,
         require:true,
-        unique:true
+        unique:true,
+        Validate(value){
+            if(!validator.isEmail(value)){
+                throw new Error("Wrong Email");
+            }
+        }
     },
     password:{
         type:String,
-        require:true
-    }
+        require:true,
+        minlenght:8,
+        hide:true
+    },
+
 })
 
 const Login = mongoose.model("Login",LoginSchema);
