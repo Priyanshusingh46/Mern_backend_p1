@@ -114,14 +114,56 @@ app.get("/suit",async(req,res)=>{
   /* Delete a Product saree or suit */
   app.delete("/saree/:id",async(req,res)=>{
     let result = await Saree.deleteOne({_id:req.params.id})
-    console.log(result)
     res.send(result);
   })
 
   app.delete("/suit/:id",async(req,res)=>{
     let result = await Suit.deleteOne({_id:req.params.id})
-    console.log(result)
     res.send(result);
+  })
+
+  /* get a single product details */
+  app.get("/updatesaree/:id",async(req,res)=>{
+    let result = await Saree.findOne({_id:req.params.id});
+    console.log("updatesaree");
+    console.log(result);
+    res.send(result);
+  })
+
+  /* update Single product */
+  app.put("/updatesaree/:id",async(req,res)=>{
+     let result = await Saree.updateOne(
+      {_id:req.params.id},
+      {
+        $set:req.body
+      }
+      
+      )
+      res.send(result);
+  })
+
+
+
+
+
+   /* get a single suit product details */
+   app.get("/updatesuit/:id",async(req,res)=>{
+    let result = await Suit.findOne({_id:req.params.id});
+    console.log("updatesuit");
+    console.log(result);
+    res.send(result);
+  })
+
+  /* update Single suit product */
+  app.put("/updatesuit/:id",async(req,res)=>{
+     let result = await Suit.updateOne(
+      {_id:req.params.id},
+      {
+        $set:req.body
+      }
+      
+      )
+      res.send(result);
   })
 
 app.listen(5000);
