@@ -96,4 +96,32 @@ else{
 }
 })
 
+
+/* geting suit details */
+
+app.get("/suit",async(req,res)=>{
+  let result = await Suit.find();
+  if(result.length>0)
+  {
+    console.log(result);
+    res.send(result);
+  }
+  else{
+    res.send("No Data available");
+  }
+  })
+
+  /* Delete a Product saree or suit */
+  app.delete("/saree/:id",async(req,res)=>{
+    let result = await Saree.deleteOne({_id:req.params.id})
+    console.log(result)
+    res.send(result);
+  })
+
+  app.delete("/suit/:id",async(req,res)=>{
+    let result = await Suit.deleteOne({_id:req.params.id})
+    console.log(result)
+    res.send(result);
+  })
+
 app.listen(5000);
