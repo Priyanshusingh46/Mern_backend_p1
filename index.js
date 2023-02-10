@@ -92,7 +92,7 @@ if(result.length>0)
   res.send(result);
 }
 else{
-  res.send("No Data available");
+  res.send(null);
 }
 })
 
@@ -107,7 +107,7 @@ app.get("/suit",async(req,res)=>{
     res.send(result);
   }
   else{
-    res.send("No Data available");
+    res.send(null);
   }
   })
 
